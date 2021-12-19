@@ -1,0 +1,21 @@
+{
+    "header": {
+        "messageId": "06d2a32e-5815-433a-94f2-5bc9a95146bf",
+        "messageType": "Command",
+        "messageNamespace": "com.alight.messages/events/person/goalEvent",
+        "messageVersion": "1.0",
+        "messageTopic": "Baking",
+        "messageSubTopic": "",
+        "eventName": "Cake:Baking",
+        "eventBodyNamespace": "",
+        "tag": "Cake",
+        "action": "Baking",
+        "businessDomain": "Person",
+        "messageTimestamp": "2020-08-08T20:39:56-04:00"
+    },
+    "body": {
+        "clientReferenceNumber": "06d2a32e-5815-433a-94f2-5bc9a95146bf",
+        "task": "aTask",
+        "effectiveDate": "anEffectiveDate"
+    }
+}

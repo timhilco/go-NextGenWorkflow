@@ -1,0 +1,121 @@
+{"level":"info","time":"2021-12-16T20:49:47-05:00","message":"PersonBusinessProcessDB -> Connected to MongoDB!"}
+{"level":"info","time":"2021-12-16T20:49:47-05:00","message":"PersonBusinessProcessDB -> Deleting All documents"}
+{"level":"info","time":"2021-12-16T20:49:47-05:00","message":"Deleted 1 documents in the PersonBusinessProcess collection\n"}
+{"level":"info","time":"2021-12-16T20:49:49-05:00","message":"PersonBusinessProcessDB -> Connected to MongoDB!"}
+{"level":"info","time":"2021-12-16T20:49:49-05:00","message":"SchedulerTask: ->Initializing the SchedulerTask"}
+{"level":"info","time":"2021-12-16T20:49:49-05:00","message":"SchedulerTask: ->Initializing the SchedulerTask"}
+{"level":"info","time":"2021-12-16T20:49:49-05:00","message":"SchedulerTask:5949e3ab-685b-4329-8e21-64ad69edcba4 ->Starting the Event Loop"}
+{"level":"info","time":"2021-12-16T20:49:52-05:00","message":"SchedulerTask:288328d7-c082-4ae0-8eb8-6c4af45307b0 --> activateBusinessProcessTemplateForPrincipal: Sample"}
+{"level":"info","time":"2021-12-16T20:49:49-05:00","message":"SchedulerTask:288328d7-c082-4ae0-8eb8-6c4af45307b0 ->Starting the Event Loop"}
+21-12-06T13:56:00-05:00"}
+{"level":"info","time":"2021-12-06T13:56:09-05:00","message":"SchedulerTask:80e33fd0-3ced-4ada-8cf9-f01e8ada0ca1 -> Hit Ticker @ 2021-12-06T13:56:09-05:00"}
+{"level":"info","time":"2021-12-06T13:56:09-05:00","message":"SchedulerTask:7b2d603c-3f85-4c31-a57b-5dba1633dfea -> Hit Ticker @ 2021-12-06T13:56:04-05:00"}
+level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=10 result=true "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 20 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 20 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Bus{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"PersonBusinessProcessDB -> Updating document for: dedf53f9-95fb-4368-b379-b11c7485ea99"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Matched 1 documents and updated 1 documents.\n"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"###############################################################"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"==============================================================="}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"======================MixWetIngredients=== ===================="}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"SchedulerTask:fe3a0264-19af-415b-be7a-5ad2aa2aaf32 --> processInboundMessage -> Processing Event"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"SchedulerTask:fe3a0264-19af-415b-be7a-5ad2aa2aaf32 Process Event --> Processing Event: Cake:MixWetIngredients"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"PersonBusinessProcessDB -> Get document for: dedf53f9-95fb-4368-b379-b11c7485ea99"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"PersonBusinessProcessDB -> Updating document for: dedf53f9-95fb-4368-b379-b11c7485ea99"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Matched 1 documents and updated 1 documents.\n"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"###############################################################"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"==============================================================="}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"==========================MixDryIngredients===================="}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"SchedulerTask:c6f028fd-2803-48d8-8768-e611c6994393 --> processInboundMessage -> Processing Event"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"SchedulerTask:c6f028fd-2803-48d8-8768-e611c6994393 Process Event --> Processing Event: Cake:MixDryIngredients"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"PersonBusinessProcessDB -> Get document for: dedf53f9-95fb-4368-b379-b11c7485ea99"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"PersonBusinessProcessDB -> Updating document for: dedf53f9-95fb-4368-b379-b11c7485ea99"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Matched 1 documents and updated 1 documents.\n"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"###############################################################"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"==============================================================="}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"==========================Bake ================================"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"###############################################################"}
+021-12-06T13:55:28-05:00","message":"Person Business Process -> DontExpectAnEventExpectation: EE:20"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"----------------------------------------------------------------------------"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"------- Step exectueAnEventInThisForAnActivation ---------------------------"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"------- that.f(anEvent, anEventExpectation, anWorkflow); -------------------"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"----------------------------------------------------------------------------"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> ExpectationsFollowing: 20EE: "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=10 result=true "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 20 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 20 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [ 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=20 result=true "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 30 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 30 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [ 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=30 result=true "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 40 20 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 40 20 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 40 30 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [ 30 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=40 result=false "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> ExpectationsFollowingAnExpectationWaitingExpectations - Entering WaitingExpectation [{30 {printFunction(\"**** Step Action - Block Code -->  Mixing Dry *****\")   } {MixDryIngredients Cake:MixDryIngredients} { {   }} [{10 {printFunction(\"**** Step Action - Block Code -> Getting Ingredients *****\")   } {GetIngredients Cake:GetIngredients} { {   }} []}]}] : Result: [  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> ExpectAll: EE: [  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> IsDone "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> Execute: Id= 43520396-e878-4b51-aadc-a3e53f43bfbb , EventName= Cake:MixDryIngredients "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> nextExpectationAtEventIfAbsent: Id= 43520396-e878-4b51-aadc-a3e53f43bfbb , EventName= Cake:MixDryIngredients "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process nextExpectationAtEventIfAbsent -> Expectations found: EE:30"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> DontExpectAnEventExpectation: EE:30"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"----------------------------------------------------------------------------"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"------- Step exectueAnEventInThisForAnActivation ---------------------------"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"------- that.f(anEvent, anEventExpectation, anWorkflow); -------------------"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"----------------------------------------------------------------------------"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> ExpectationsFollowing: 30EE: "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=10 result=true "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 20 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 20 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [ 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=20 result=true "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 30 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 30 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [ 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=30 result=true "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 40 20 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 40 20 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 40 30 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [ 30 10  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=40 result=true "}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Business Process Template -> ExpectationsFollowingAnExpectationWaitingExpectations - Entering WaitingExpectation [] : Result: [ 40  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> ExpectAll: EE: [ 40  ]"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> Expect: EE:40"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> Expect - Updated: dedf53f9-95fb-4368-b379-b11c7485ea99"}
+{"level":"info","time":"2021-12-06T13:55:28-05:00","message":"Person Business Process -> IsDone "}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Person Business Process -> Execute: Id= 9b3df6e6-70f3-45e7-8dd5-84edb52aa41e , EventName= Cake:Bake "}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Person Business Process -> nextExpectationAtEventIfAbsent: Id= 9b3df6e6-70f3-45e7-8dd5-84edb52aa41e , EventName= Cake:Bake "}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Person Business Process nextExpectationAtEventIfAbsent -> Expectations found: EE:40"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Person Business Process -> DontExpectAnEventExpectation: EE:40"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"----------------------------------------------------------------------------"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"------- Step exectueAnEventInThisForAnActivation ---------------------------"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"------- that.f(anEvent, anEventExpectation, anWorkflow); -------------------"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"----------------------------------------------------------------------------"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Person Business Process -> ExpectationsFollowing: 40EE: "}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=10 result=true "}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 20 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 20 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [ 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=20 result=true "}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 30 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 30 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [ 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=30 result=true "}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 40 20 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 40 20 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> aCollection = [ 40 30 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting addAllPrerequisitesTo -> for: [ 30 10  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> Exiting ee.hasNoPrerequisitesIn - ee=40 result=true "}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Business Process Template -> ExpectationsFollowingAnExpectationWaitingExpectations - Entering WaitingExpectation [] : Result: [  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Person Business Process -> ExpectAll: EE: [  ]"}
+{"level":"info","time":"2021-12-04T19:32:08-05:00","message":"Person Business Process -> IsDone "}
