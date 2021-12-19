@@ -7,7 +7,6 @@ import (
 	"testing"
 	"time"
 
-	calc "../go-PencilCalculator"
 	"github.com/google/uuid"
 	"github.com/timhilco/go-NextGenWorkflow/databases"
 	"github.com/timhilco/go-NextGenWorkflow/datastructures"
@@ -242,6 +241,8 @@ func TestTimeoutBatchJob(t *testing.T) {
 	sb.ProcessTimeouts(ctx3)
 
 }
+/*
 func TestAntlrPencilCalculator(t *testing.T) {
 	calc.Execute()
 }
+*/
