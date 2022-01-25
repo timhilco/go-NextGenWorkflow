@@ -58,7 +58,7 @@ func CreateSchedulerManager(ctx context.Context, properties map[string]string) (
 		URL:    "mongodb://localhost:27017",
 		Logger: logger,
 	}
-	connection := databases.CreatePersonBusinessDB(databaseContext)
+	connection := databases.CreatePersonBusinessDB(ctx, databaseContext)
 	sm.mongoDatabaseConnection = connection
 
 	return sm, nil
@@ -112,7 +112,7 @@ func (s *SchedulerBroker) ProcessTimeouts(ctx context.Context) error {
 		Logger: logger,
 		URL:    "mongodb://localhost:27017",
 	}
-	db := databases.CreatePersonBusinessDB(dbcontext)
+	db := databases.CreatePersonBusinessDB(ctx, dbcontext)
 
 	findOptions := options.Find()
 	findOptions.SetLimit(2)
@@ -157,7 +157,7 @@ func (s *SchedulerBroker) ProcessTimeouts(ctx context.Context) error {
 
 		}
 		if doUpdate {
-			s.mongoDatabaseConnection.UpdatePersonBusinessProcessDocument(pbp.InternalID, pbp)
+			s.mongoDatabaseConnection.UpdatePersonBusinessProcessDocument(ctx, pbp.InternalID, pbp)
 		}
 	}
 
@@ -299,7 +299,7 @@ func (s *SchedulerTask) ProcessInboundMessage(ctx context.Context, replayChannel
 	switch messageType {
 	case "Event":
 		s.Logger.Info(fmt.Sprintf("SchedulerTask:%s --> processInboundMessage -> Processing Event", s.SchedulerID))
-		s.ProcessEvent(m)
+		s.ProcessEvent(ctx, m)
 	case "Command":
 		s.Logger.Info(fmt.Sprintf("SchedulerTask:%s --> processInboundMessage -> Processing Command", s.SchedulerID))
 
@@ -399,7 +399,7 @@ func (s *SchedulerTask) ActivateBusinessProcessTemplateForPrincipal(ctx context.
 		State:                          "Activated",
 		WaitingExpectations:            we,
 	}
-	err := s.Broker.mongoDatabaseConnection.InsertPersonBusinessProcessDocument(&personBusinessProcess)
+	err := s.Broker.mongoDatabaseConnection.InsertPersonBusinessProcessDocument(ctx, &personBusinessProcess)
 	s.Broker.PersonBusinessProcessMap[aBusinessProcessID] = &personBusinessProcess
 
 	if err != nil {
@@ -430,7 +430,7 @@ func (s *SchedulerTask) ActivateBusinessProcessTemplateForPrincipal(ctx context.
 */
 
 // ProcessEvent is a method to process an event acgainst a business process
-func (s *SchedulerTask) ProcessEvent(jsonEvent datastructures.Message) (string, error) {
+func (s *SchedulerTask) ProcessEvent(ctx context.Context, jsonEvent datastructures.Message) (string, error) {
 	eventName := jsonEvent.Message.Header.EventName
 	s.Logger.Info(fmt.Sprintf("SchedulerTask:%s Process Event --> Processing Event: %s", s.SchedulerID, eventName))
 
@@ -455,10 +455,10 @@ func (s *SchedulerTask) ProcessEvent(jsonEvent datastructures.Message) (string, 
 			State:                          "Activated",
 		}*/
 	var personBusinessProcess *domain.PersonBusinessProcess
-	personBusinessProcess = s.Broker.PersonBusinessProcessMap[aBusinessProcessID]
-	personBusinessProcess, _ = s.Broker.mongoDatabaseConnection.GetPersonBusinessProcessDocument(aBusinessProcessID)
+	//personBusinessProcess = s.Broker.PersonBusinessProcessMap[aBusinessProcessID]
+	personBusinessProcess, _ = s.Broker.mongoDatabaseConnection.GetPersonBusinessProcessDocument(ctx, aBusinessProcessID)
 	personBusinessProcess.Execute(jsonEvent)
-	s.Broker.mongoDatabaseConnection.UpdatePersonBusinessProcessDocument(aBusinessProcessID, personBusinessProcess)
+	s.Broker.mongoDatabaseConnection.UpdatePersonBusinessProcessDocument(ctx, aBusinessProcessID, personBusinessProcess)
 	return "AnEvent", nil
 }
 

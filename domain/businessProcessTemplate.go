@@ -12,112 +12,6 @@ type BusinessProcessTemplate struct {
 	EventExpectations []EventExpectation `bson:"eventExpectations,omitempty"`
 }
 
-//StepInterface  is an inteface for Step
-type StepInterface interface {
-}
-
-//BreakStep is a type of Step
-type BreakStep struct {
-}
-
-func (bs *BreakStep) ExecuteAnEventInAnEventExpectationForABusinessProcessTemplate(
-	anEvent EventDefinition,
-	anEventExpectation EventExpectation,
-	aBusinessProcess BusinessProcesss) {
-
-}
-
-//CompositeStep is a type of Step
-type CompositeStep struct {
-}
-
-//ConditionalStep is a type of Step
-type ConditionalStep struct {
-}
-type SchedulerEvent struct {
-	EventID       string
-	EffectiveDate string
-}
-
-//Step is a step
-type Step struct {
-	Block string `bson:"block,omitempty"`
-	Args  string `bson:"args,omitempty"`
-	Code  string `bson:"code,omitempty"`
-	F     string `bson:"f,omitempty"` // Build Function
-	/*
-	   // Create that object
-	   const that = {};
-	   // Define private properties
-	   that.block = spec.block;
-	   const args = spec.block.args;
-	   const code = spec.block.code;
-	   that.f = new Function(args, code);
-	   // Define private methods
-	*/
-}
-
-func (s *Step) ExecuteAnEventInThisForAnActiviation(jsonEvent datastructures.Message,
-	anEventExpectation *EventExpectation,
-	aBusinessProcess *PersonBusinessProcess) {
-	aBusinessProcess.DontExpect(anEventExpectation)
-	logger.Info("----------------------------------------------------------------------------")
-	logger.Info("------- Step exectueAnEventInThisForAnActivation ---------------------------")
-	logger.Info("------- that.f(anEvent, anEventExpectation, anWorkflow); -------------------")
-	logger.Info("----------------------------------------------------------------------------")
-	ee := anEventExpectation.nextExpectationsForAnWorkflow(aBusinessProcess)
-	aBusinessProcess.ExpectAll(ee)
-	if aBusinessProcess.IsDone() {
-		aBusinessProcess.State = C_Status_Complete
-	}
-	/*
-	   const executeAnEventInThisForAnActiviation = function (anEvent, anEventExpectation, anWorkflow) {
-	       anWorkflow.dontExpectAnEventExpectation(anEventExpectation);
-	       that.f(anEvent, anEventExpectation, anWorkflow);
-	       anWorkflow.expectAll(anEventExpectation.nextExpectationsForAnWorkflow(anWorkflow));
-
-	   };
-	   that.executeAnEventInThisForAnActiviation = executeAnEventInThisForAnActiviation;
-	   //
-	*/
-}
-func (s *Step) String() string {
-	t := "Step -> \n"
-	return t
-	/*
-		t = t + s.id + "\n"
-		t = t + ee.step.String() + "\n"
-		t = t + ee.event.String()
-		return t
-	*/
-	/*
-	   const toString = function (iOffset) {
-	       const offset = iOffset || 0;
-	       let sOffset = "---";
-	       for (let index = 0; index < offset; index++) {
-	           sOffset = sOffset + "----";
-	       }
-	       return "Step -> \n" + sOffset
-	       + "args: " + that.block.args + "\n" + sOffset
-	       + "code: " + that.block.code + "<-- Step end";
-	   };
-	   that.toString = toString;
-
-	*/
-}
-
-/*
-func (s *Step) toDataObject() {
-
-	   const toDataObject = function () {
-	       const obj = {};
-	       obj.block = that.block;
-	       return obj;
-	   };
-	   that.toDataObject = toDataObject;
-
-}
-*/
 // EventDefinition is
 type EventDefinition struct {
 
@@ -175,7 +69,7 @@ func (e *EventDefinition) toDataObject() {
 //EventExpectation is a event to expect
 type EventExpectation struct {
 	ID            string             `bson:"id"`
-	Step          Step               `bson:"step"`
+	Step          IStep              `bson:"step"`
 	Event         EventDefinition    `bson:"event"`
 	TimeoutAction TimeoutAction      `bson:"timeoutAction"`
 	Prerequisites []EventExpectation `bson:"prerequisites"`
@@ -527,7 +421,7 @@ type TimeoutAction struct {
 	*/
 }
 
-func (t *TimeoutAction) executeAnEventInThisForAnActiviation() {
+func (t *TimeoutAction) ExecuteAnEventInThisForAnActiviation() {
 
 	/*
 	   const executeAnEventInThisForAnActiviation = function (anEvent, anEventExpectation, anWorkflow) {
@@ -742,15 +636,23 @@ func CreateBakeTemplate() BusinessProcessTemplate {
 	*/
 	// spec is for event expectation
 	//bakeTimeoutAction := TimeoutAction{}
+	stepFactory := StepFactory{}
 	getIngredientsEvent := EventDefinition{
 		ID:   "GetIngredients",
 		Name: "Cake:GetIngredients",
 	}
 
-	block := "printFunction(\"**** Step Action - Block Code -> Getting Ingredients *****\")"
-	getIngrediantsStep := Step{
-		Block: block,
-	}
+	specs := make(map[string]string)
+	block := "printFunction(\"**** Step Action - Block Code -> Getting Ingredients - Flour *****\")"
+	specs["block"] = block
+	cStep1 := stepFactory.BuildStep(specs, nil)
+	block = "printFunction(\"**** Step Action - Block Code -> Getting Ingredients - Butter *****\")"
+	specs["block"] = block
+	cStep2 := stepFactory.BuildStep(specs, nil)
+
+	csteps := []IStep{cStep1, cStep2}
+	getIngrediantsStep := stepFactory.BuildCompositeStep(csteps)
+
 	getIngredientsEventExpectation := EventExpectation{
 		ID:    "10",
 		Step:  getIngrediantsStep,
@@ -764,10 +666,9 @@ func CreateBakeTemplate() BusinessProcessTemplate {
 		ID:   "MixWetIngredients",
 		Name: "Cake:MixWetIngredients",
 	}
-	block2 := "printFunction(\"**** Step Action - Block Code -> Mixing Wet *****\")"
-	mixWetIngredientsStep := Step{
-		Block: block2,
-	}
+	block = "printFunction(\"**** Step Action - Block Code -> Mixing Wet *****\")"
+	specs["block"] = block
+	mixWetIngredientsStep := stepFactory.BuildStep(specs, nil)
 	prerequisites := []EventExpectation{getIngredientsEventExpectation}
 	mixWetIngredientsEventExpectation := EventExpectation{
 		ID:            "20",
@@ -782,10 +683,9 @@ func CreateBakeTemplate() BusinessProcessTemplate {
 		ID:   "MixDryIngredients",
 		Name: "Cake:MixDryIngredients",
 	}
-	block3 := "printFunction(\"**** Step Action - Block Code -->  Mixing Dry *****\")"
-	mixDryIngredientStep := Step{
-		Block: block3,
-	}
+	block = "printFunction(\"**** Step Action - Block Code -->  Mixing Dry *****\")"
+	specs["block"] = block
+	mixDryIngredientStep := stepFactory.BuildStep(specs, nil)
 	prerequisites2 := []EventExpectation{getIngredientsEventExpectation}
 
 	mixDryIngredientsEventExpection := EventExpectation{
@@ -804,10 +704,9 @@ func CreateBakeTemplate() BusinessProcessTemplate {
 		Name: "Cake:Bake",
 	}
 
-	block4 := "printFunction(\"**** Step Action - Block Code -> Baking *****\")"
-	bakeStep := Step{
-		Block: block4,
-	}
+	block = "printFunction(\"**** Step Action - Block Code -> Baking *****\")"
+	specs["block"] = block
+	bakeStep := stepFactory.BuildStep(specs, nil)
 
 	prerequisites3 := []EventExpectation{mixWetIngredientsEventExpectation, mixDryIngredientsEventExpection}
 

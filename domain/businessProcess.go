@@ -20,6 +20,8 @@ const (
 	C_Status_Complete  = "Complete"
 )
 
+type ObjectID string
+
 // PersonBusinessProcess is an type of hilcoEvent
 type PersonBusinessProcess struct {
 	InternalID                     string                  `bson:"internalID,omitempty"`
@@ -27,17 +29,19 @@ type PersonBusinessProcess struct {
 	PersonGlobalIdentifier         string                  `bson:"personGlobalIdentifier,omitempty"`
 	EffectiveDate                  string                  `bson:"effectveDate,omitempty"` //Date
 	State                          string                  `bson:"state,omitempty"`
-	BusinessProcessTemplate        BusinessProcessTemplate `bson:"businessProcessTemplate,omitempty"`
-	WaitingExpectations            []EventExpectation      `bson:"waitingExpectations,omitempty"`
+	BusinessProcessTemplate        BusinessProcessTemplate `bson:"-"`
+	BusinessProcessTemplateID      string                  `bson:"businessProcessTemplate,omitempty"`
+	WaitingExpectations            []EventExpectation      `bson:"-"`
+	WaitingExpectationsID          []string                `bson:"waitingExpectationsID,omitempty"`
 }
 
-func (p *PersonBusinessProcess) businessProcessBreak() {
+func (p *PersonBusinessProcess) Break() {
 
 }
-func (p *PersonBusinessProcess) eventOutOfSequence(anEvent EventDefinition) {
+func (p *PersonBusinessProcess) EventOutOfSequence(anEvent EventDefinition) {
 
 }
-func (p *PersonBusinessProcess) setBusinessProcessTemplate(aTemplate BusinessProcessTemplate) {
+func (p *PersonBusinessProcess) SetBusinessProcessTemplate(aTemplate BusinessProcessTemplate) {
 
 }
 
@@ -199,6 +203,11 @@ func (p *PersonBusinessProcess) Expect(eventExpectation EventExpectation) {
 	we := p.WaitingExpectations
 	we = append(we, eventExpectation)
 	p.WaitingExpectations = we
+	eeIds := make([]string, 0)
+	for _, ee := range we {
+		eeIds = append(eeIds, ee.ID)
+	}
+	p.WaitingExpectationsID = eeIds
 	p.State = C_Status_InProcess
 	s = fmt.Sprintf("Person Business Process -> Expect - Updated: %s", p.InternalID)
 	logger.Info(s)

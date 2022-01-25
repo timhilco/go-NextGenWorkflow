@@ -18,7 +18,7 @@ type PersonBusinessProcessDB struct {
 }
 
 //CreatePersonBusinessDB is
-func CreatePersonBusinessDB(processingContext DatabaseContext) PersonBusinessProcessDB {
+func CreatePersonBusinessDB(ctx context.Context, processingContext DatabaseContext) PersonBusinessProcessDB {
 	pbp := PersonBusinessProcessDB{}
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
 	logger := processingContext.Logger
@@ -43,7 +43,7 @@ func CreatePersonBusinessDB(processingContext DatabaseContext) PersonBusinessPro
 }
 
 //InsertPersonBusinessProcessDocument inserts documents into the PersonBusinessProcess Collection
-func (p *PersonBusinessProcessDB) InsertPersonBusinessProcessDocument(personBusinessProcess *domain.PersonBusinessProcess) error {
+func (p *PersonBusinessProcessDB) InsertPersonBusinessProcessDocument(ctx context.Context, personBusinessProcess *domain.PersonBusinessProcess) error {
 	p.logger.Info("PersonBusinessProcessDB -> Inserting document for: " + personBusinessProcess.PersonGlobalIdentifier)
 	collection := p.MongoClient.Database("personBusinessProcessDB").Collection("personBusinessProcess")
 
@@ -57,7 +57,7 @@ func (p *PersonBusinessProcessDB) InsertPersonBusinessProcessDocument(personBusi
 }
 
 //UpdatePersonBusinessProcessDocument inserts documents into the PersonBusinessProcess Collection
-func (p *PersonBusinessProcessDB) UpdatePersonBusinessProcessDocument(key string, personBusinessProcess *domain.PersonBusinessProcess) error {
+func (p *PersonBusinessProcessDB) UpdatePersonBusinessProcessDocument(ctx context.Context, key string, personBusinessProcess *domain.PersonBusinessProcess) error {
 	p.logger.Info("PersonBusinessProcessDB -> Updating document for: " + key)
 	filter := bson.M{"internalID": bson.D{{Key: "$eq", Value: key}}}
 
@@ -73,7 +73,7 @@ func (p *PersonBusinessProcessDB) UpdatePersonBusinessProcessDocument(key string
 }
 
 //DeletePersonBusinessProcessDocument deletes documents into the PersonBusinessProcess Collection
-func (p *PersonBusinessProcessDB) DeletePersonBusinessProcessDocument() error {
+func (p *PersonBusinessProcessDB) DeletePersonBusinessProcessDocument(ctx context.Context) error {
 	p.logger.Info("PersonBusinessProcessDB -> Deleting document for:")
 	collection := p.MongoClient.Database("personBusinessProcessDB").Collection("personBusinessProcess")
 	deleteResult, err := collection.DeleteMany(context.TODO(), bson.D{{}})
@@ -86,7 +86,7 @@ func (p *PersonBusinessProcessDB) DeletePersonBusinessProcessDocument() error {
 }
 
 //DeleteAllPersonBusinessProcessDocument deletes documents into the PersonBusinessProcess Collection
-func (p *PersonBusinessProcessDB) DeleteAllPersonBusinessProcessDocument() error {
+func (p *PersonBusinessProcessDB) DeleteAllPersonBusinessProcessDocument(ctx context.Context) error {
 	p.logger.Info("PersonBusinessProcessDB -> Deleting All documents")
 	collection := p.MongoClient.Database("personBusinessProcessDB").Collection("personBusinessProcess")
 	deleteResult, err := collection.DeleteMany(context.TODO(), bson.D{{}})
@@ -99,7 +99,7 @@ func (p *PersonBusinessProcessDB) DeleteAllPersonBusinessProcessDocument() error
 }
 
 //GetPersonBusinessProcessDocument gets documents into the PersonBusinessProcess Collection
-func (p *PersonBusinessProcessDB) GetPersonBusinessProcessDocument(aBusinessPersonID string) (*domain.PersonBusinessProcess, error) {
+func (p *PersonBusinessProcessDB) GetPersonBusinessProcessDocument(ctx context.Context, aBusinessPersonID string) (*domain.PersonBusinessProcess, error) {
 	// Pass these options to the Find method
 	p.logger.Info("PersonBusinessProcessDB -> Get document for: " + aBusinessPersonID)
 	findOptions := options.Find()
@@ -114,7 +114,7 @@ func (p *PersonBusinessProcessDB) GetPersonBusinessProcessDocument(aBusinessPers
 
 	cur, err := collection.Find(context.TODO(), filter, findOptions)
 	if err != nil {
-		p.logger.Fatal(fmt.Sprintf("PersonBusinessProcessDB -> Error: %s", err))
+		p.logger.Fatal(fmt.Sprintf("PersonBusinessProcessDB Get -> Filter Error: %s", err))
 	}
 
 	// Finding multiple documents returns a cursor
@@ -125,24 +125,40 @@ func (p *PersonBusinessProcessDB) GetPersonBusinessProcessDocument(aBusinessPers
 		var elem domain.PersonBusinessProcess
 		err := cur.Decode(&elem)
 		if err != nil {
-			p.logger.Fatal(fmt.Sprintf("PersonBusinessProcessDB: Error ->%s", err))
+			p.logger.Fatal(fmt.Sprintf("PersonBusinessProcessDB Get -> Decode Error ->%s", err))
 		}
 
 		results = append(results, &elem)
 	}
 
 	if err := cur.Err(); err != nil {
-		p.logger.Fatal(fmt.Sprintf("PersonBusinessProcessDB: Error ->%s", err))
+		p.logger.Fatal(fmt.Sprintf("PersonBusinessProcessDB Get -> Cur Error ->%s", err))
 	}
 
 	// Close the cursor once finished
 	cur.Close(context.TODO())
-	return results[0], nil
+	pbp := results[0]
+	template := getBusinessProcessTemplate(pbp.BusinessProcessTemplateID)
+	pbp.BusinessProcessTemplate = template
+	we := make([]domain.EventExpectation, 0)
+	for _, eeID := range pbp.WaitingExpectationsID {
+		ees := template.EventExpectations
+		for _, ee := range ees {
+			if ee.ID == eeID {
+				we = append(we, ee)
+			}
+		}
+	}
+	pbp.WaitingExpectations = we
+	return pbp, nil
 }
 
 // Close closes the Mongo client
-func (p *PersonBusinessProcessDB) Close() error {
+func (p *PersonBusinessProcessDB) Close(ctx context.Context) error {
 	err := p.MongoClient.Disconnect(context.TODO())
 	p.logger.Info("PersonBusinessProcessDB -> Connection to MongoDB closed.")
 	return err
+}
+func getBusinessProcessTemplate(key string) domain.BusinessProcessTemplate {
+	return domain.CreateBakeTemplate()
 }

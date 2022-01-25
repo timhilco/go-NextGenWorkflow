@@ -14,6 +14,7 @@ import (
 	"github.com/timhilco/go-NextGenWorkflow/util"
 	"github.com/timhilco/go-NextGenWorkflow/util/logger"
 	"github.com/timhilco/go-NextGenWorkflow/workflowprogram"
+	"github.com/timhilco/go-PencilCalculator/pencilCalculator"
 )
 
 func buildEventMessage(task string) []byte {
@@ -39,12 +40,13 @@ func buildPersonBusinessProcess(businessProcessTemplate domain.BusinessProcessTe
 }
 
 func setup(logger *logger.HilcoLogger) {
-	context := databases.DatabaseContext{
+	dbcontext := databases.DatabaseContext{
 		Logger: logger,
 		URL:    "mongodb://localhost:27017",
 	}
-	database := databases.CreatePersonBusinessDB(context)
-	database.DeleteAllPersonBusinessProcessDocument()
+	ctx := context.Background()
+	database := databases.CreatePersonBusinessDB(ctx, dbcontext)
+	database.DeleteAllPersonBusinessProcessDocument(ctx)
 }
 
 func TestBrokerServerStartUp(t *testing.T) {
@@ -241,8 +243,8 @@ func TestTimeoutBatchJob(t *testing.T) {
 	sb.ProcessTimeouts(ctx3)
 
 }
-/*
+
 func TestAntlrPencilCalculator(t *testing.T) {
-	calc.Execute()
+	ctx := context.Background()
+	pencilCalculator.Evaluate(ctx, "2+1")
 }
-*/
